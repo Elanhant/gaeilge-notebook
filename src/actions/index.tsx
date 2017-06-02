@@ -37,7 +37,7 @@ export function changeRoute(pathname: string, search?: string): ChangeRoute {
         type: constants.CHANGE_ROUTE,
         payload: {
             pathname,
-            search
+            search: search || ''
         }
     };
 }
