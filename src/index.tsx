@@ -5,6 +5,7 @@ import { Provider } from 'react-redux';
 import { enthusiasm } from './reducers';
 import { StoreState } from './types';
 import Hello from './containers/Hello';
+import Header from './components/layout/Header';
 import Page from './components/layout/Page';
 import registerServiceWorker from './registerServiceWorker';
 import './index.css';
@@ -17,6 +18,9 @@ const store = createStore<StoreState>(enthusiasm, {
 ReactDOM.render(
     <Provider store={store} >
         <Page>
+            <Header>
+                Gaeilge Notebook
+            </Header>
             <Hello />
         </Page>
     </Provider>,
