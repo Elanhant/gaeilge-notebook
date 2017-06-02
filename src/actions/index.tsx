@@ -21,3 +21,23 @@ export function decrementEnthusiasm(): DecrementEnthusiasm {
         type: constants.DECREMENT_ENTHUSIASM
     };
 }
+
+export interface ChangeRoute {
+    type: constants.CHANGE_ROUTE;
+    payload: {
+        pathname: string;
+        search?: string;
+    };
+}
+
+export type RouterAction = ChangeRoute;
+
+export function changeRoute(pathname: string, search?: string): ChangeRoute {
+    return {
+        type: constants.CHANGE_ROUTE,
+        payload: {
+            pathname,
+            search
+        }
+    };
+}

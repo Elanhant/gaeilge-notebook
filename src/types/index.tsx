@@ -1,5 +1,6 @@
 export interface RouterState {
     currentPath: string;
+    currentSearch: string;
 }
 
 export interface EnthusiasmState {

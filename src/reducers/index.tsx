@@ -1,6 +1,6 @@
-import { EnthusiasmAction } from '../actions';
+import { EnthusiasmAction, RouterAction } from '../actions';
 import { EnthusiasmState, RouterState } from '../types';
-import { INCREMENT_ENTHUSIASM, DECREMENT_ENTHUSIASM } from '../constants';
+import { INCREMENT_ENTHUSIASM, DECREMENT_ENTHUSIASM, CHANGE_ROUTE } from '../constants';
 
 export const enthusiasmInitState = {
     enthusiasmLevel: 1,
@@ -19,9 +19,16 @@ export function enthusiasm(state: EnthusiasmState = enthusiasmInitState, action:
 }
 
 export const routerInitState = {
-    currentPath: '/'
+    currentPath: '/',
+    currentSearch: ''
 } as RouterState;
 
-export function router(state: RouterState = routerInitState, action: EnthusiasmAction): RouterState {
-    return state;
+export function router(state: RouterState = routerInitState, action: RouterAction): RouterState {
+    console.log(action);
+    switch (action.type) {
+        case CHANGE_ROUTE:
+            return { ...state, currentPath: action.payload.pathname, currentSearch: action.payload.search };
+        default:
+            return state;
+    }
 }
