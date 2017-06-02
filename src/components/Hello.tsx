@@ -1,4 +1,5 @@
 import * as React from 'react';
+import Button, { Color } from './ui/Button';
 import './Hello.css';
 
 export interface Props {
@@ -19,8 +20,8 @@ function Hello({ name, enthusiasmLevel = 1, onIncrement, onDecrement }: Props) {
                 Hello {name + getExclamationMarks(enthusiasmLevel)}
             </div>
             <div>
-                <button onClick={onIncrement}>+</button>
-                <button onClick={onDecrement}>-</button>
+                <Button onClick={onIncrement} color={Color.green}>+</Button>
+                <Button onClick={onDecrement}>-</Button>
             </div>
         </div>
     );
