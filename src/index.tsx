@@ -1,8 +1,10 @@
 import * as React from 'react';
 import * as ReactDOM from 'react-dom';
-import { createStore, combineReducers } from 'redux';
+import { createStore, combineReducers, applyMiddleware } from 'redux';
 import { Provider } from 'react-redux';
+import createSagaMiddleware from 'redux-saga';
 import createHistory from 'history/createBrowserHistory';
+import { rootSaga } from './actions';
 import { enthusiasm, router } from './reducers';
 import { StoreState } from './types';
 import Hello from './containers/Hello';
@@ -19,7 +21,14 @@ const reducer = combineReducers<StoreState>({
     router
 });
 
-const store = createStore<StoreState>(reducer);
+const sagaMiddleware = createSagaMiddleware();
+
+const store = createStore<StoreState>(
+    reducer,
+    applyMiddleware(sagaMiddleware)
+);
+
+sagaMiddleware.run(rootSaga);
 
 const history = createHistory();
 

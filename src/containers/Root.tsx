@@ -1,6 +1,7 @@
 import * as React from 'react';
 import { StoreState } from '../types';
 import { connect } from 'react-redux';
+import WordsContainer from './Words';
 
 export interface Props {
     currentPath: string;
@@ -24,7 +25,10 @@ class RootContainer extends React.PureComponent<Props, object> {
                 }
                 {
                     currentPath === '/words' && (
-                        <div>WORDS</div>
+                        <div>
+                            WORDS
+                            <WordsContainer />
+                        </div>
                     )
                 }
                 {

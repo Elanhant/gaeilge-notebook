@@ -6,3 +6,12 @@ export type DECREMENT_ENTHUSIASM = typeof DECREMENT_ENTHUSIASM;
 
 export const CHANGE_ROUTE = 'CHANGE_ROUTE';
 export type CHANGE_ROUTE = typeof CHANGE_ROUTE;
+
+export const WORDS_REQUEST = 'WORDS_REQUEST';
+export type WORDS_REQUEST = typeof WORDS_REQUEST;
+
+export const WORDS_SUCCESS = 'WORDS_SUCCESS';
+export type WORDS_SUCCESS = typeof WORDS_SUCCESS;
+
+export const WORDS_FAILURE = 'WORDS_FAILURE';
+export type WORDS_FAILURE = typeof WORDS_FAILURE;

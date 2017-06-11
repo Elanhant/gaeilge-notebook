@@ -1,4 +1,6 @@
+import { all, call, fork, put, takeEvery } from 'redux-saga/effects';
 import * as constants from '../constants';
+import { Effect } from 'redux-saga';
 
 export interface IncrementEnthusiasm {
     type: constants.INCREMENT_ENTHUSIASM;
@@ -40,4 +42,33 @@ export function changeRoute(pathname: string, search?: string): ChangeRoute {
             search: search || ''
         }
     };
+}
+
+export interface FetchWords {
+    type: constants.WORDS_REQUEST | constants.WORDS_SUCCESS | constants.WORDS_FAILURE;
+    payload: object;
+}
+
+function* fetchWords(): IterableIterator<Effect> {
+    console.log(10);
+    const data = yield call(fetch, '/words');
+
+    console.log(data);
+
+    yield put({
+        type: constants.WORDS_REQUEST,
+        payload: {}
+    } as FetchWords);
+}
+
+export function* fetchWordsSaga(): IterableIterator<Effect> {
+    while (true) {
+        yield takeEvery(constants.WORDS_REQUEST, fetchWords);
+    }
+}
+
+export function* rootSaga(): IterableIterator<Effect> {
+    yield all([
+        fork(fetchWordsSaga)
+    ]);
 }
