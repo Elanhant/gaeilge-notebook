@@ -1,5 +1,6 @@
 import { all, call, fork, put, takeEvery } from 'redux-saga/effects';
 import * as constants from '../constants';
+import * as api from '../services/api';
 import { Effect } from 'redux-saga';
 
 export interface IncrementEnthusiasm {
@@ -44,27 +45,37 @@ export function changeRoute(pathname: string, search?: string): ChangeRoute {
     };
 }
 
+export interface LoadWords {
+    type: constants.LOAD_WORDS
+}
+
 export interface FetchWords {
     type: constants.WORDS_REQUEST | constants.WORDS_SUCCESS | constants.WORDS_FAILURE;
     payload: object;
+    error?: boolean
 }
 
 function* fetchWords(): IterableIterator<Effect> {
-    console.log(10);
-    const data = yield call(fetch, '/words');
+    yield put({ type: constants.WORDS_REQUEST } as FetchWords);
 
-    console.log(data);
+    const { response, error } = yield call(api.get, '/api/words');
 
-    yield put({
-        type: constants.WORDS_REQUEST,
-        payload: {}
-    } as FetchWords);
+    if (response) {
+        yield put({
+            type: constants.WORDS_SUCCESS,
+            payload: response
+        });
+    } else {
+        yield put({
+            type: constants.WORDS_FAILURE,
+            payload: error,
+            error: true
+        });
+    }
 }
 
 export function* fetchWordsSaga(): IterableIterator<Effect> {
-    while (true) {
-        yield takeEvery(constants.WORDS_REQUEST, fetchWords);
-    }
+    yield takeEvery(constants.LOAD_WORDS, fetchWords);
 }
 
 export function* rootSaga(): IterableIterator<Effect> {

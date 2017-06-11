@@ -1,6 +1,6 @@
 import * as React from 'react';
-import { FetchWords } from '../actions';
-import { WORDS_REQUEST } from '../constants';
+import { LoadWords } from '../actions';
+import { LOAD_WORDS } from '../constants';
 import { StoreState } from '../types';
 import { connect, Dispatch } from 'react-redux';
 
@@ -37,9 +37,9 @@ export function mapStateToProps(state: StoreState): StateFromProps {
     };
 }
 
-export function mapDispatchToProps(dispatch: Dispatch<FetchWords>): DispatchFromProps {
+export function mapDispatchToProps(dispatch: Dispatch<LoadWords>): DispatchFromProps {
     return {
-        fetchWords: () => dispatch({ type: WORDS_REQUEST })
+        fetchWords: () => dispatch({ type: LOAD_WORDS })
     };
 }
 

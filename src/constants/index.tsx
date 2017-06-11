@@ -7,6 +7,9 @@ export type DECREMENT_ENTHUSIASM = typeof DECREMENT_ENTHUSIASM;
 export const CHANGE_ROUTE = 'CHANGE_ROUTE';
 export type CHANGE_ROUTE = typeof CHANGE_ROUTE;
 
+export const LOAD_WORDS = 'LOAD_WORDS';
+export type LOAD_WORDS = typeof LOAD_WORDS;
+
 export const WORDS_REQUEST = 'WORDS_REQUEST';
 export type WORDS_REQUEST = typeof WORDS_REQUEST;
 
